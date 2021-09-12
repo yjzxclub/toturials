@@ -1,2 +1,2 @@
-# toturials
-A toturial of front-end. By yjzxclub
+# tutorial
+A tutorial of front-end. By yjzxclub

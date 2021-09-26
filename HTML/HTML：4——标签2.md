@@ -1,3 +1,11 @@
+本文按照 Mozilla 贡献者基于 CC-BY-SA 2.5 协议发布的以下文章改编:
+
+- <https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content>
+- <https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started>
+- <https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/HTML_text_fundamentals>
+
+本文基于 CC-BY-SA 4.0 协议发布。
+
 # HTML：4——标签2
 
 ## 列表

@@ -1,3 +1,9 @@
+本文按照 Mozilla 贡献者基于 CC-BY-SA 2.5 协议发布的以下文章改编:
+
+- <https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML>
+
+本文基于 CC-BY-SA 4.0 协议发布。
+
 # HTML：5——头部元素
 
 之前我们学习的时候，利用VSCode的自动补全弄了一段很长的生成的代码，大部分都是`<head>`里的内容。现在就让我们详细讲讲这里的内容。  

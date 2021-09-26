@@ -1,3 +1,4 @@
+
 本文按照 Mozilla 贡献者基于 CC-BY-SA 2.5 协议发布的以下文章改编:
 
 - <https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Introduction_to_HTML/Getting_started>
@@ -169,11 +170,11 @@ Markdown有6级标题，HTML也一样。使用方法是`<h1>`~`<h6>`包围标题
 
 ### src
 
-src是source的缩写，很好理解，就是图片的链接。链接可以是**相对路径**，也可以是**绝对路径**。举个例子，“我们机房隔壁是广播室”，这就是相对路径；而“广播室在浙江省永嘉县永嘉中学图书馆4楼四零几室”就是绝对路径。   
+src是source的缩写，很好理解，就是图片的链接。链接可以是**相对路径**，也可以是**绝对路径**。举个例子，“我们机房隔壁是广播室”，这就是相对路径；而“广播室在浙江省永嘉县永嘉中学图书馆4楼四零几室”就是绝对路径。  
 比如说，假设`scissor-seven-picture.jpg`和你的HTML在同一个路径下（也就是同一个文件夹内），你的src就可以直接写`scissor-seven-picture.jpg`。  
 那要是这个文件在一个叫img的文件夹内，而img和你的网页同目录（文件夹）（如下图）呢？
 
-```
+```md
 --html（文件夹）  
     --index.html  
     --img（文件夹）  
@@ -211,8 +212,15 @@ src是source的缩写，很好理解，就是图片的链接。链接可以是**
 >欢迎访问[我们的博客](https://yjzxclub.github.io)以获取更多信息。
 
 就应该这么写：
+
 ```HTML
 <p>欢迎访问<a href="https://yjzxclub.github.io">我们的博客</a>以获取更多的信息。</p>
 ```
 
 另外，`href`是超文本引用（ **h**ypertext **ref**erence）的缩写。
+
+当然，还有图片链接——就是可以点击的图片，点击后链接到其他地方。只需要让一个`<img>`元素成为`<a>`元素的内容即可：  
+
+```HTML
+<a href="https://bing.com"><img src="bing.png"></a>
+```

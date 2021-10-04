@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3数组和对象.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/*
+
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #50a14f;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///home/floating/Myfile/Document/src/style.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>本文按照 Mozilla 贡献者基于 CC-BY-SA 2.5 协议发布的以下文章改编:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JS/First_steps/Arrays">https://developer.mozilla.org/zh-CN/docs/Learn/JS/First_steps/Arrays</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Basics">https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Basics</a></li>
+</ul>
+<p>本文基于 CC-BY-SA 4.0 协议发布。</p>
+<h1 id="js-%E6%95%99%E7%A8%8B--%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1">JS 教程 —— 数组和对象</h1>
+<p>我们上次讲了变量。这是一种用来存单个值的容器。但是如果我们要存多个值呢？比如我们现在需要统计一个班级的人名，或者统计每天的气温，这显然就不能用反复声明大量的变量进行存储。所以我们就要引出本章的主角：数组和对象。</p>
+<h2 id="%E6%95%B0%E7%BB%84">数组</h2>
+<p><strong>数组</strong>是一系列按顺序排列的值的集合。它可以一下子存下一系列的值，就相当于一些按顺序排列的变量。比如我们现在要去超市买东西，依次买了很多物品，并且记录了它们的价格。</p>
+<p>数组包裹在一对中括号内 ( <code>[]</code> ) ，里面的值按顺序排列，并且使用英文逗号进行分隔 ( <code>,</code> ) 。可以通过在数组名后面加上一个 ( <code>[]</code> ) ，然后在括号内使用通过<strong>从零开始</strong>的下标来找到对应的值。下面我们给出了一系列的例子。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> shopping = [<span class="hljs-string">'bread'</span>, <span class="hljs-string">'milk'</span>, <span class="hljs-string">'cheese'</span>, <span class="hljs-string">'hummus'</span>, <span class="hljs-string">'noodles'</span>];
+<span class="hljs-literal">undefined</span>
+&gt; shopping; <span class="hljs-comment">// 打印 shopping 数组</span>
+[ <span class="hljs-string">'bread'</span>, <span class="hljs-string">'milk'</span>, <span class="hljs-string">'cheese'</span>, <span class="hljs-string">'hummus'</span>, <span class="hljs-string">'noodles'</span> ]
+&gt; <span class="hljs-keyword">let</span> price = [ <span class="hljs-number">5.00</span>, <span class="hljs-number">3.50</span>, <span class="hljs-number">12.50</span>, <span class="hljs-number">15.00</span>, <span class="hljs-number">7.50</span>];
+<span class="hljs-literal">undefined</span>
+&gt; price; <span class="hljs-comment">// 打印 price 数组</span>
+[ <span class="hljs-number">5</span>, <span class="hljs-number">3.5</span>, <span class="hljs-number">12.5</span>, <span class="hljs-number">15</span>, <span class="hljs-number">7.5</span> ]
+&gt; shopping[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 使用下标进行查找，从 0 开始到比长度小一的值(这里是 4)结束</span>
+<span class="hljs-string">'bread'</span>
+&gt; price[<span class="hljs-number">0</span>]; <span class="hljs-comment">// price 的第一个元素</span>
+<span class="hljs-number">5</span>
+&gt; price[<span class="hljs-number">100</span>]; <span class="hljs-comment">// 越界之后值会变成 undefined</span>
+<span class="hljs-literal">undefined</span>
+&gt; shopping[<span class="hljs-number">3</span>];
+<span class="hljs-string">'hummus'</span>
+&gt; price[<span class="hljs-number">2</span>] = <span class="hljs-number">114</span>; <span class="hljs-comment">// 可以给对应的下标赋值，这里是 2，就是第三个</span>
+<span class="hljs-number">114</span>
+&gt; price; <span class="hljs-comment">// 可以看到第三个发生变化了</span>
+[ <span class="hljs-number">5</span>, <span class="hljs-number">3.5</span>, <span class="hljs-number">114</span>, <span class="hljs-number">15</span>, <span class="hljs-number">7.5</span> ]
+&gt; shopping[<span class="hljs-number">2</span>] = <span class="hljs-number">1234</span>; <span class="hljs-comment">// 还可以给原来的赋值不同类型，就和普通变量一样</span>
+<span class="hljs-number">1234</span>
+&gt; shopping;
+[ <span class="hljs-string">'bread'</span>, <span class="hljs-string">'milk'</span>, <span class="hljs-number">1234</span>, <span class="hljs-string">'hummus'</span>, <span class="hljs-string">'noodles'</span> ]
+&gt; <span class="hljs-keyword">let</span> anEmptyArray = []; <span class="hljs-comment">// 可以先声明一个空的数组，以后再往里面加东西</span>
+<span class="hljs-literal">undefined</span>
+&gt; anEmptyArray; <span class="hljs-comment">// 现在它是空的</span>
+[]
+&gt; 
+</div></code></pre>
+<p>数组里的值甚至可以是另一个数组，这叫做数组嵌套，下面演示了嵌套数组的行为。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> random = [<span class="hljs-string">'tree'</span>, <span class="hljs-number">795</span>, [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]]; <span class="hljs-comment">// 声明一个嵌套的数组</span>
+<span class="hljs-literal">undefined</span>
+&gt; random[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]; <span class="hljs-comment">// 访问嵌套数组，第一个[]导航到数组，第二个继续导航</span>
+<span class="hljs-number">1</span>
+&gt; random[<span class="hljs-number">0</span>] = [<span class="hljs-string">'acacia'</span>, <span class="hljs-string">'birch'</span>, <span class="hljs-string">'spruce'</span>, <span class="hljs-string">'oak'</span>]; <span class="hljs-comment">// 赋值为一个数组</span>
+[ <span class="hljs-string">'acacia'</span>, <span class="hljs-string">'birch'</span>, <span class="hljs-string">'spruce'</span>, <span class="hljs-string">'oak'</span> ]
+&gt; random; <span class="hljs-comment">// 现在里面有两个嵌套数组了</span>
+[ [ <span class="hljs-string">'acacia'</span>, <span class="hljs-string">'birch'</span>, <span class="hljs-string">'spruce'</span>, <span class="hljs-string">'oak'</span> ], <span class="hljs-number">795</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] ]
+&gt; random[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>]; <span class="hljs-comment">// 同样可以访问</span>
+<span class="hljs-string">'spruce'</span>
+&gt; random[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>] = [<span class="hljs-string">'oak leaves'</span>, <span class="hljs-string">'oak log'</span>]; <span class="hljs-comment">// 数组套了三层了</span>
+[ <span class="hljs-string">'oak leaves'</span>, <span class="hljs-string">'oak log'</span> ]
+&gt; random[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>][<span class="hljs-number">1</span>]; <span class="hljs-comment">// 访问到第三层的数组</span>
+<span class="hljs-string">'oak log'</span>
+&gt; 
+</div></code></pre>
+<h2 id="%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95">数组方法</h2>
+<h3 id="length">length</h3>
+<p>最常用的数组方法，可能就是获取数组长度了。数组长度可以通过 <code>length</code> 方法来获取，就是在数组名之后加上一个 <code>.length</code>，例如 <code>sequence.length</code> 就可以了解我们下面定义的数组的长度。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> sequence = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">13</span>]; <span class="hljs-comment">// 声明一个数组</span>
+<span class="hljs-literal">undefined</span>
+&gt; sequence.length; <span class="hljs-comment">// 打印数组的长度</span>
+<span class="hljs-number">7</span>
+&gt; 
+</div></code></pre>
+<p>length 属性最常用的时候，就是循环遍历一个数组中的所有项目。比如说下面的这个代码：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> sequence = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">13</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; sequence.length; i = i + <span class="hljs-number">1</span>) {
+ <span class="hljs-built_in">console</span>.log(sequence[i]);
+}
+</div></code></pre>
+<p>我们以后会详细了解循环，但是这里先稍微提下这里主要干的事情：</p>
+<ul>
+<li>在数组中的元素编号 0 开始循环。</li>
+<li>在元素编号等于数组长度的时候停止循环。 这适用于任何长度的数组，但在这种情况下，它将在编号 7 的时候终止循环（还记得数组的编号是从 0 开始的吗？0 到 6 就是 7）。</li>
+<li>对于每个元素，使用 console.log() 将其打印到浏览器控制台。</li>
+</ul>
+<h3 id="%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B0%E7%BB%84%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2">字符串和数组之间的转换</h3>
+<p>有时候你会需要把一个有规律的字符串转化成数组来处理数据，比方说这样的字符串</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> myData = <span class="hljs-string">'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle'</span>;
+</div></code></pre>
+<p>显然，这里是用 <code>,</code> 来分割的一系列单词。如果我们要把它转成一个数组，就可以用 <code>split()</code> 方法，它会对字符串进行处理，然后返回一个数组。方法的用法是在字符串之后加上一个 <code>.split()</code>，在括号内指定分隔符（默认是空格）。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> myData = <span class="hljs-string">'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle'</span>;
+<span class="hljs-literal">undefined</span>
+&gt; <span class="hljs-keyword">let</span> myArray = myData.split(<span class="hljs-string">','</span>); <span class="hljs-comment">// 转换成数组</span>
+<span class="hljs-literal">undefined</span>
+&gt; myArray; <span class="hljs-comment">// 现在已经转成数组了</span>
+[
+  <span class="hljs-string">'Manchester'</span>,
+  <span class="hljs-string">'London'</span>,
+  <span class="hljs-string">'Liverpool'</span>,
+  <span class="hljs-string">'Birmingham'</span>,
+  <span class="hljs-string">'Leeds'</span>,
+  <span class="hljs-string">'Carlisle'</span>
+]
+&gt; myArray[<span class="hljs-number">2</span>]; <span class="hljs-comment">// 第三个</span>
+<span class="hljs-string">'Liverpool'</span>
+&gt; myArray[myArray.length - <span class="hljs-number">1</span>]; <span class="hljs-comment">// 最后一个</span>
+<span class="hljs-string">'Carlisle'</span>
+&gt; 
+</div></code></pre>
+<p>如果要把数组转成对应的字符串，可以用相反的方法 <code>.join()</code> ，用法和前面的相同。（假设我们这里是紧跟着上面执行的）</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> myNewString = myArray.join(<span class="hljs-string">','</span>);
+<span class="hljs-literal">undefined</span>
+&gt; myNewString;
+<span class="hljs-string">'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle'</span>
+&gt; 
+</div></code></pre>
+<h3 id="%E6%B7%BB%E5%8A%A0%E5%92%8C%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E9%A1%B9">添加和删除数组项</h3>
+<p>这里我们可以使用 <code>push()</code> 和 <code>pop()</code> 方法在<strong>数组尾部</strong>进行添加和删除元素。使用 <code>push()</code> 方法之后会返回新数组的长度，使用 <code>pop()</code> 方法之后会返回被删除的那个值。也许你可以用变量存下它们。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> myArray = [<span class="hljs-string">'Manchester'</span>, <span class="hljs-string">'London'</span>, <span class="hljs-string">'Liverpool'</span>, <span class="hljs-string">'Birmingham'</span>, <span class="hljs-string">'Leeds'</span>, <span class="hljs-string">'Carlisle'</span>];
+<span class="hljs-literal">undefined</span>
+&gt; myArray.push(<span class="hljs-string">'Cardiff'</span>); <span class="hljs-comment">// 添加一个元素</span>
+<span class="hljs-number">7</span>
+&gt; myArray;
+[
+  <span class="hljs-string">'Manchester'</span>,
+  <span class="hljs-string">'London'</span>,
+  <span class="hljs-string">'Liverpool'</span>,
+  <span class="hljs-string">'Birmingham'</span>,
+  <span class="hljs-string">'Leeds'</span>,
+  <span class="hljs-string">'Carlisle'</span>,
+  <span class="hljs-string">'Cardiff'</span>
+]
+&gt; myArray.push(<span class="hljs-string">'Bradford'</span>, <span class="hljs-string">'Brighton'</span>); <span class="hljs-comment">// 添加两个元素</span>
+<span class="hljs-number">9</span>
+&gt; myArray;
+[
+  <span class="hljs-string">'Manchester'</span>, <span class="hljs-string">'London'</span>,
+  <span class="hljs-string">'Liverpool'</span>,  <span class="hljs-string">'Birmingham'</span>,
+  <span class="hljs-string">'Leeds'</span>,      <span class="hljs-string">'Carlisle'</span>,
+  <span class="hljs-string">'Cardiff'</span>,    <span class="hljs-string">'Bradford'</span>,
+  <span class="hljs-string">'Brighton'</span>
+]
+&gt; <span class="hljs-keyword">let</span> newLength = myArray.push(<span class="hljs-string">'Bristol'</span>); <span class="hljs-comment">// 存下新的长度</span>
+<span class="hljs-literal">undefined</span>
+&gt; myArray;
+[
+  <span class="hljs-string">'Manchester'</span>, <span class="hljs-string">'London'</span>,
+  <span class="hljs-string">'Liverpool'</span>,  <span class="hljs-string">'Birmingham'</span>,
+  <span class="hljs-string">'Leeds'</span>,      <span class="hljs-string">'Carlisle'</span>,
+  <span class="hljs-string">'Cardiff'</span>,    <span class="hljs-string">'Bradford'</span>,
+  <span class="hljs-string">'Brighton'</span>,   <span class="hljs-string">'Bristol'</span>
+]
+&gt; newLength; <span class="hljs-comment">// 现在的新长度</span>
+<span class="hljs-number">10</span>
+&gt; myArray.pop(); <span class="hljs-comment">// 删除最后一个元素</span>
+<span class="hljs-string">'Bristol'</span>
+&gt; <span class="hljs-keyword">let</span> removedItem = myArray.pop(); <span class="hljs-comment">// 存下删掉的元素</span>
+<span class="hljs-literal">undefined</span>
+&gt; myArray;
+[
+  <span class="hljs-string">'Manchester'</span>,
+  <span class="hljs-string">'London'</span>,
+  <span class="hljs-string">'Liverpool'</span>,
+  <span class="hljs-string">'Birmingham'</span>,
+  <span class="hljs-string">'Leeds'</span>,
+  <span class="hljs-string">'Carlisle'</span>,
+  <span class="hljs-string">'Cardiff'</span>,
+  <span class="hljs-string">'Bradford'</span>
+]
+&gt; removedItem; <span class="hljs-comment">// 删掉的元素</span>
+<span class="hljs-string">'Brighton'</span>
+&gt; 
+</div></code></pre>
+<p>采取这个方法我们可以模拟一个栈操作。栈是一种 LIFO（先进先出）的数据结构。通俗的讲起来就像是叠盘子，后面的叠在上面，拿的时候就拿走最上面的。最后叠的最先拿出来，就是一个先进先出了。以后我们会单独开章节讲数据结构，当作拓展的内容。</p>
+<h2 id="%E5%AF%B9%E8%B1%A1">对象</h2>
+<p>我们刚刚提到了数组，这是一种按顺序存值的方法。它用途非常广泛，但是因为只能按下标找值，在有些时候可能会比较难用。比如现在我们要存一个人的相关信息，比如名字，性别，年龄，简介这些，如果用数组就会遇到一个难题：必须给这些信息确定一个顺序，规定第一个是名字，第二个是性别等等。这样写会带来理解上面的困难（一堆乱七八糟的数字可不是很好阅读的）。如果使用一系列的单一变量去存，会搞出一大堆变量。那么有没有更好的方法呢？答案是使用对象。</p>
+<p><strong>对象 (Object)</strong> 是包含一系列相关数据和方法的集合（通常由一些变量和函数组成，我们称之为对象里面的属性和方法）。由于我们目前还没有讲函数，我们暂时先讲对象的数值相关的东西，以后在函数部分再提对象的方法。</p>
+<p>对象使用一对大括号 ( <code>{}</code> ) 来表示，里面包含着很多用逗号分开的<strong>成员</strong>，每一个成员都拥有一个<strong>名字</strong>（下面的 name, age 这些），和一个<strong>值</strong>（如[&quot;Linus&quot;, &quot;Torvalds&quot;], 52 都是值）。每一个名字和值(Name and Value)之间由冒号（:）分隔，然后就可以通过成员的名字来查找对应的值。下面是一个例子。为了看得更清楚，我们在其中插入了换行，一行一个成员。我们推荐在以后编程实践当中适当使用换行，因为可以让代码更加整洁。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> person = {
+  <span class="hljs-attr">name</span>: [<span class="hljs-string">"Linus"</span>, <span class="hljs-string">"Torvalds"</span>],
+  <span class="hljs-attr">age</span>: <span class="hljs-number">52</span>,
+  <span class="hljs-attr">gender</span>: <span class="hljs-string">'male'</span>,
+  <span class="hljs-attr">saying</span>: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+};
+</div></code></pre>
+<p>可以使用<strong>点表示法</strong>来查找对应的值，就是在对象标识符之后加上一个点，在点后面加上键名称就可以了，比如 <code>person.age</code> 就可以对应 <code>person</code> 的 <code>age</code> 对应的值，即 <code>52</code> 。</p>
+<p>还有另一种表示法是<strong>括号表示法</strong>，用法类似数组，是在一个中括号 <code>[]</code> 内加上键名称来对应的，例如 <code>person[&quot;saying&quot;]</code> 就可以对应到那个 <code>saying</code> 。</p>
+<p>我们建议使用点表示法，因为更加简洁，方便打字。</p>
+<p>下面是在 NodeJS 里面运行的结果，换行之后那三个点是 node 加上的，表示上一句话还没结束。这不是代码的一部分，所以自己写代码的时候不要加上去。</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> person = {
+...   name: [<span class="hljs-string">"Linus"</span>, <span class="hljs-string">"Torvalds"</span>],
+...   age: <span class="hljs-number">52</span>,
+...   gender: <span class="hljs-string">'male'</span>,
+...   saying: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+... };
+<span class="hljs-literal">undefined</span>
+&gt; person;
+{
+  <span class="hljs-attr">name</span>: [ <span class="hljs-string">'Linus'</span>, <span class="hljs-string">'Torvalds'</span> ],
+  <span class="hljs-attr">age</span>: <span class="hljs-number">52</span>,
+  <span class="hljs-attr">gender</span>: <span class="hljs-string">'male'</span>,
+  <span class="hljs-attr">saying</span>: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+}
+&gt; person.age; <span class="hljs-comment">// 点表示法</span>
+<span class="hljs-number">52</span>
+&gt; person[<span class="hljs-string">'saying'</span>]; <span class="hljs-comment">// 括号表示法</span>
+<span class="hljs-string">'NVIDIA, **** YOU!'</span>
+&gt; 
+</div></code></pre>
+<h3 id="%E5%AD%90%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4">子命名空间</h3>
+<p>可以用一个对象来做另一个对象成员的值。比如我们现在可以把 <code>person</code> 的 <code>name</code> 从一个数组换成一个对象。就像是下面这样。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> person = {
+  <span class="hljs-attr">name</span>: {
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Linus'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Torvalds'</span>
+  },
+  <span class="hljs-attr">age</span>: <span class="hljs-number">52</span>,
+  <span class="hljs-attr">gender</span>: <span class="hljs-string">'male'</span>,
+  <span class="hljs-attr">saying</span>: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+};
+</div></code></pre>
+<p>这样就可以用点表示法进行多重的查找，比如 <code>person.name.firstName</code> 这样子</p>
+<pre class="hljs"><code><div>&gt; <span class="hljs-keyword">let</span> person = {
+...   name: {
+.....     firstName: <span class="hljs-string">'Linus'</span>,
+.....     lastName: <span class="hljs-string">'Torvalds'</span>
+.....   },
+...   age: <span class="hljs-number">52</span>,
+...   gender: <span class="hljs-string">'male'</span>,
+...   saying: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+... };
+<span class="hljs-literal">undefined</span>
+&gt; person.name.firstName;
+<span class="hljs-string">'Linus'</span>
+&gt; person.name.lastName;
+<span class="hljs-string">'Torvalds'</span>
+&gt; 
+</div></code></pre>
+<p>这样非常有用，因为你可以在对象里面嵌套另一个对象，从而有结构地保存一系列的数据，起到方便阅读和维护的作用。</p>
+<h3 id="%E8%AE%BE%E7%BD%AE%E5%AF%B9%E8%B1%A1%E6%88%90%E5%91%98">设置对象成员</h3>
+<p>有时候我们需要对对象进行一系列的操作。比方说我们可能会修改一个成员，可能会加上一个还没有的成员，或者一个成员不要了我们可以删除它。这些都是可以做到的。</p>
+<p>现在我们再创建一次上文中的 <code>person</code> 对象，然后对这个变量进行一系列操作：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> person = {
+  <span class="hljs-attr">name</span>: [<span class="hljs-string">"Linus"</span>, <span class="hljs-string">"Torvalds"</span>],
+  <span class="hljs-attr">age</span>: <span class="hljs-number">52</span>,
+  <span class="hljs-attr">gender</span>: <span class="hljs-string">'male'</span>,
+  <span class="hljs-attr">saying</span>: <span class="hljs-string">'NVIDIA, **** YOU!'</span>
+};
+</div></code></pre>
+<p>现在你可以试着修改其中的成员：</p>
+<pre class="hljs"><code><div>&gt; person.name = <span class="hljs-string">'Tux'</span>; <span class="hljs-comment">// 设置名字</span>
+<span class="hljs-string">'Tux'</span>
+&gt; person.age = <span class="hljs-number">25</span>; <span class="hljs-comment">// 设置年龄</span>
+<span class="hljs-number">25</span>
+&gt; person; <span class="hljs-comment">// 现在已经变化了</span>
+{ <span class="hljs-attr">name</span>: <span class="hljs-string">'Tux'</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">25</span>,
+  <span class="hljs-attr">gender</span>: <span class="hljs-string">'male'</span>,
+  <span class="hljs-attr">saying</span>: <span class="hljs-string">'NVIDIA, **** YOU!'</span> }
+&gt; 
+</div></code></pre>
+<p>你可以删除其中的成员</p>
+
+</body>
+</html>

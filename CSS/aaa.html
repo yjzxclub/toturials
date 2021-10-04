@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>一个练习</title>
+    <style>
+        h1 {
+            color: blueviolet;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+        p strong{
+            font-size: 1.2em;
+        }
+        p > span > strong {
+            color: red;
+        }
+        .red:hover{
+            color: blue;
+        }
+        h1 + p + p{
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>A poem</h1>
+    <p>Roses are <span class="red">red</span></p>
+    <p>Voilets are <span class="blue">blue</span></p>
+    <p><strong>Unexpected '{'</strong></p>
+    <p><span>On <strong>line 32</strong></span></p>
+</body>
+</html>

@@ -1,5 +1,7 @@
-let fibonacci = [1, 1];
-for (let i = 2; i < 45; i++) {
-    fibonacci[i] = fibonacci[i-2] + fibonacci[i-1];
+let cat = {
+    name: "Ket",
+    say: function() {
+        console.log("My name is " + this.name);
+    }
 }
-console.log(fibonacci);
+cat.say();

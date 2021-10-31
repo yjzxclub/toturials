@@ -1,0 +1,18 @@
+html {
+    font-family: sans-serif;
+}
+ul {
+    width: 32em;
+    list-style-type: none;
+}
+li {
+    border: 0.3em solid rgb(0, 250,154);
+    background-color: rgba(127, 255, 212, 0.8);
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.4em;
+}
+.addnum {
+    margin: 0.5em;
+    font-size: large;
+}
